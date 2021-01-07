@@ -1,0 +1,44 @@
+group 'com.idexx.lims-test-admin-vault-test'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url 'https://idexxlabs.jfrog.io/idexxlabs/lims-gradle'
+            credentials {
+                username = artifactory_user
+                password = artifactory_password
+            }
+        }
+    }
+    dependencies {
+        classpath('com.idexx.lims:lims-gradle-plugin:v48.1') {
+            exclude group: "com.google.cloud.tools", module: "appengine-plugins-core"
+        }
+    }
+}
+
+apply plugin: 'lims-gradle-plugin'
+
+vault {
+    endpoint = vaultEndpoint
+    role = vaultRole
+    vaultProjectId = vaultProject
+
+    vault {
+        println "Using ${gdosVaultKeyPath} for looking up gdos secure properties."
+        println "With role ${vaultRole}"
+        withProperties(gdosVaultKeyPath, {
+            project.ext.dbUsername = it['ta.db.smoketest.user']
+        })
+    }
+}
+
+task test {
+    println "\nSuccessfully retrieved vault secrets"
+    println "Retrieved dbUsername: " + project.ext.dbUsername.toString() + "\n"
+}

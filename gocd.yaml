@@ -1,0 +1,16 @@
+##TODO:: Write a gocd yaml
+
+#- exec:
+#    command: bash
+#    arguments:
+#      - -c
+#      - "echo ${GOOGLE_APPLICATION_CREDENTIALS}"
+
+#- exec:
+#    command: bash
+#    arguments:
+#      - "-c"
+#      - "${GRADLE} test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info"
+
+# Defaults to pre-prod, passing the above vaultRole and gdosVaultKeyPath gives us a prod vault query
+# Can use ${GRADLE} test --info for a pre-prod stage
