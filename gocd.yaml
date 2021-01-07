@@ -1,16 +1,29 @@
-##TODO:: Write a gocd yaml
-
-#- exec:
-#    command: bash
-#    arguments:
-#      - -c
-#      - "echo ${GOOGLE_APPLICATION_CREDENTIALS}"
-
-#- exec:
-#    command: bash
-#    arguments:
-#      - "-c"
-#      - "${GRADLE} test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info"
+format_version: 4
+environments:
+  prod:
+    - vault-test
+pipelines:
+  vault-test:
+    group: medical-affairs
+    display_order: 999
+    materials:
+      vault-test-repo:
+        git: git@github.com:selliott-Idexx/lims-test-admin-vault-test.git
+    environment_variables:
+      JAVA_HOME: "/opt/jdk-11.0.5"
+    stages:
+      - test:
+          tasks:
+            - exec:
+                command: bash
+                arguments:
+                  - -c
+                  - "echo ${GOOGLE_APPLICATION_CREDENTIALS}"
+            - exec:
+                command: bash
+                arguments:
+                  - "-c"
+                  - "./gradlew test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info"
 
 # Defaults to pre-prod, passing the above vaultRole and gdosVaultKeyPath gives us a prod vault query
 # Can use ${GRADLE} test --info for a pre-prod stage
