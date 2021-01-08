@@ -1,11 +1,10 @@
 format_version: 4
 environments:
-  prod:
+  pre-prod:
     pipelines:
       - vault-test
 pipelines:
   vault-test:
-    group: medical-affairs
     display_order: 999
     materials:
       vault-test-repo:
