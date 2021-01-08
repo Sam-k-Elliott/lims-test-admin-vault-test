@@ -5,6 +5,7 @@ environments:
       - vault-test
 pipelines:
   vault-test:
+    group: gdos-testing
     display_order: 999
     materials:
       vault-test-repo:
