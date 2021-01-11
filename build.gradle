@@ -1,8 +1,17 @@
 group 'com.idexx.lims-test-admin-vault-test'
 version '1.0-SNAPSHOT'
 
+apply plugin:'java'
+apply plugin: 'lims-gradle-plugin'
+
 repositories {
     mavenCentral()
+    google()
+}
+
+dependencies {
+    compile 'com.google.api-client:google-api-client:1.31.1'
+    testImplementation 'junit:junit:4.13'
 }
 
 buildscript {
@@ -22,8 +31,6 @@ buildscript {
     }
 }
 
-apply plugin: 'lims-gradle-plugin'
-
 vault {
     endpoint = vaultEndpoint
     role = vaultRole
@@ -40,7 +47,3 @@ vault {
     }
 }
 
-task test {
-    println "\nSuccessfully retrieved vault secrets"
-    println "Retrieved dbUsername: " + project.ext.dbUsername.toString() + "\n"
-}
