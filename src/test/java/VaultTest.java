@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class vaultTest {
+public class VaultTest {
 
     @Test
     public void googleCredentialsTest() throws IOException {
