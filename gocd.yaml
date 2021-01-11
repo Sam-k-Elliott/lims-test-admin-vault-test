@@ -25,6 +25,6 @@ pipelines:
                 command: bash
                 arguments:
                   - "-c"
-                  - "${GRADLE} test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info --no-daemon"
+                  - "${GRADLE} test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info"
 
 # Defaults to pre-prod, -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos for PROD
