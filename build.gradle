@@ -29,6 +29,8 @@ vault {
     role = vaultRole
     vaultProjectId = vaultProject
 
+    println "GOOGLE_APPLICATION_CREDENTIALS is currently set to ${System.env.GOOGLE_APPLICATION_CREDENTIALS}"
+
     vault {
         println "Using ${gdosVaultKeyPath} for looking up gdos secure properties."
         println "With role ${vaultRole}"
