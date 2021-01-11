@@ -47,3 +47,6 @@ vault {
     }
 }
 
+test {
+    systemProperty 'GOOGLE_APPLICATION_CREDENTIALS',    System.getProperty('GOOGLE_APPLICATION_CREDENTIALS')
+}
