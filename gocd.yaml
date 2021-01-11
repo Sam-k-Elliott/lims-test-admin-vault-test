@@ -12,6 +12,7 @@ pipelines:
         git: git@github.com:selliott-Idexx/lims-test-admin-vault-test.git
     environment_variables:
       JAVA_HOME: "/opt/jdk-11.0.5"
+      GRADLE: "./gradlew"
     stages:
       - test:
           tasks:
@@ -24,7 +25,6 @@ pipelines:
                 command: bash
                 arguments:
                   - "-c"
-                  - "./gradlew test -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos --info"
+                  - "${GRADLE} test --info"
 
-# Defaults to pre-prod, passing the above vaultRole and gdosVaultKeyPath gives us a prod vault query
-# Can use ${GRADLE} test --info for a pre-prod stage
+# Defaults to pre-prod, -PvaultRole=gdos-dev-admins -PgdosVaultKeyPath=/kv2/data/gdos/prod/gdos for PROD
